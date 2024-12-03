@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternative Energy Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #f59e0b;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            color: white;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .sidebar a:hover {
+            background-color: #fbbf24;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+        header {
+            background-color: #ffffff;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #2d3436;
+            margin-bottom: 20px;
+        }
+        p, ul {
+            line-height: 1.6;
+        }
+        .section {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .vote-button {
+            background-color: #f59e0b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .vote-button:hover {
+            background-color: #fbbf24;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        .progress-bar-filled {
+            height: 100%;
+            background-color: #f59e0b;
+            border-radius: 15px;
+        }
+        .vote-count {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="#">About Us</a>
+    <a href="#">Projects</a>
+    <a href="#">Donate</a>
+    <a href="#">Ephedra</a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+    <header>
+        <h1>Exploring Alternative Energy Solutions</h1>
+    </header>
+
+    <div class="section">
+		
+        <h2>Key Areas of Research</h2>
+        <p>These technologies offer cleaner, more sustainable energy sources for the future:</p>
+
+        <h3>Solar Energy</h3>
+        <p>Innovations in photovoltaic cells and solar thermal systems are helping harness the sun's energy more efficiently.</p>
+
+        <h3>Wind Energy</h3>
+        <p>Wind turbines continue to evolve, focusing on greater efficiency and reducing their environmental footprint.</p>
+
+        <h3>Geothermal Energy</h3>
+        <p>Geothermal energy uses the Earth's natural heat to generate electricity and provide heating solutions.</p>
+    </div>
+
+    <div class="section">
+        <h2>Impact and Future Prospects</h2>
+        <p>Transitioning to alternative energy will not only reduce global carbon emissions but also generate economic opportunities.</p>
+    </div>
+
+    <div class="section">
+        <h2>Support the Movement</h2>
+        <p>Vote for further development in renewable energy research and support initiatives that aim to transform our energy infrastructure.</p>
+        
+        <button class="vote-button" onclick="vote()">Vote Now</button>
+        
+        <!-- Vote count and progress bar -->
+        <div class="vote-count" id="vote-count">Votes: 0 (0%)</div>
+        <div class="progress-bar">
+            <div class="progress-bar-filled" id="progress-bar"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let votes = parseInt(localStorage.getItem('votes')) || 0;  // Load saved votes or set to 0
+    const totalVotes = 10000;  // Total votes limit
+
+    function updateUI() {
+        const percentage = (votes / totalVotes) * 100;
+        document.getElementById("vote-count").textContent = `Votes: ${votes} (${percentage.toFixed(1)}%)`;
+        document.getElementById("progress-bar-filled").style.width = percentage + "%";
+    }
+
+    function vote() {
+        if (votes < totalVotes) {
+            votes++;
+            localStorage.setItem('votes', votes);  // Save updated votes to localStorage
+            updateUI();  // Update the UI
+        }
+    }
+
+    // Initial UI update
+    updateUI();
+</script>
+
+</body>
+</html>
